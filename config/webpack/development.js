@@ -1,4 +1,4 @@
-process.env.node_env = process.env.node_env || 'development'
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 const environment = require('./environment')
 
