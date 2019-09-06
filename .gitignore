@@ -32,3 +32,6 @@
 # Ignore vim files
 tags
 tags.lock
+
+# Ignore environment variables
+/config/application.yml
