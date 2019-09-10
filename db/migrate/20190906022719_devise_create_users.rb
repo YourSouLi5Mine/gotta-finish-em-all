@@ -8,7 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.datetime :remember_created_at
       t.datetime :current_sign_in_at
       t.datetime :last_sign_in_at
-      t.integer  :failed_attempts, default: 5, null: false
+      t.integer  :failed_attempts, default: 0, null: false
       t.datetime :locked_at
       t.string   :username
 
