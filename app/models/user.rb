@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-    :validatable, :lockable, :timeoutable, :trackable
+  devise :database_authenticatable, :registerable, :recoverable, :validatable,
+    :lockable, :timeoutable, :trackable
 end
