@@ -1,7 +1,7 @@
-# Gotta Finish 'Em All!
+# Gotta Post 'Em All!
 
-Personal project that features a kanban board
+Personal MCS project to post/edit/delete with Facebook API via 3 different roles:
 
-## Binnacle
-
-1. 04/09/2019 18:19 Update Readme
+1. Content Creator
+1. Designer
+1. Community Manager
