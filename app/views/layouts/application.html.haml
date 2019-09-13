@@ -9,5 +9,8 @@
     = javascript_include_tag 'application'
 
   %body
+    %ul.hmenu
+      = render 'devise/menu/registration_items'
+      = render 'devise/menu/logout'
     #app
       = yield
