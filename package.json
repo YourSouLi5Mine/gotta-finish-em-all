@@ -1,6 +1,12 @@
 {
   "name": "gotta_finish_em_all",
   "private": true,
+  "scripts": {
+    "build": "postcss app/assets/stylesheets/tailwind.scss -o app/assets/stylesheets/build/tailwind.css"
+  },
   "dependencies": {
+    "autoprefixer": "^9.6.1",
+    "postcss-cli": "^6.1.3",
+    "tailwindcss": "^1.1.2"
   }
 }
