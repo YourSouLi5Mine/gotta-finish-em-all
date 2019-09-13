@@ -5,4 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create(
+  email: ENV['EMAIL'],
+  username: ENV['USERNAME'],
+  password: ENV['PASSWORD'],
+  password_confirmation: ENV['PASSWORD'])
+
 Post.create(content: Faker::Lorem.sentences);
