@@ -3,4 +3,5 @@ class User < ApplicationRecord
     :lockable, :timeoutable, :trackable
 
   has_one :role
+  has_many :posts
 end
