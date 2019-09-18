@@ -1,13 +1,60 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-User.create(email: ENV['EMAIL'], password: ENV['PASSWORD'], password_confirmation: ENV['PASSWORD'])
+roles = [
+  {
+    name: 'community manager',
+    description: 'accepts the posts created by the content creator and designer'
+  },
+  {
+    name: 'content creator',
+    description: 'adds the content of the post'
+  },
+  {
+    name: 'designer',
+    description: 'uploads the image'
+  }
+]
 
-post = Post.new(content: Faker::Lorem.sentences);
-post.image.attach(io: File.open("lib/assets/images/seeds/seed_kirby.jpg"), filename: 'seed_kirby.jpg')
-post.save!
+roles.each { |role_attrs| Role.create!(role_attrs) }
 
+users = [
+  {
+    email: 'community_manager@gmail.com',
+    password: ENV['PASSWORD'],
+    password_confirmation: ENV['PASSWORD'],
+    role_id: 1
+  },
+  {
+    email: 'content_creator@gmail.com',
+    password: ENV['PASSWORD'],
+    password_confirmation: ENV['PASSWORD'],
+    role_id: 2
+  },
+  {
+    email: 'designer@gmail.com',
+    password: ENV['PASSWORD'],
+    password_confirmation: ENV['PASSWORD'],
+    role_id: 3
+  }
+]
+
+users.each { |user_attrs| User.create!(user_attrs) }
+
+posts = [
+  {
+    content: Faker::Lorem.sentences(numer: 4),
+    image_name: 'community_manager.png'
+  },
+  {
+    content: Faker::Lorem.sentences(numer: 4),
+    image_name: 'content_creator.png'
+  },
+  {
+    content: Faker::Lorem.sentences(numer: 4),
+    image_name: 'designer.jpg'
+  }
+]
+
+posts.each do |posts_attrs|
+  post = Post.new(post_attrs[:content])
+  post.image.attach(io: File.open("lib/assets/images/seeds/#{post_attrs[:image_name]}"), filename: posts_attrs[:image_name])
+  post.save!
+end
