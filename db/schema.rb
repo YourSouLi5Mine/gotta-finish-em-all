@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_18_014745) do
+ActiveRecord::Schema.define(version: 2019_09_18_035708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,8 @@ ActiveRecord::Schema.define(version: 2019_09_18_014745) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+# Could not dump table "posts" because of following StandardError
+#   Unknown type 'users' for column 'references'
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -63,8 +60,11 @@ ActiveRecord::Schema.define(version: 2019_09_18_014745) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "role_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "users", "roles"
 end

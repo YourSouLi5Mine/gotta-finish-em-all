@@ -40,21 +40,27 @@ users.each { |user_attrs| User.create!(user_attrs) }
 
 posts = [
   {
-    content: Faker::Lorem.sentences(numer: 4),
-    image_name: 'community_manager.png'
+    content: Faker::Lorem.sentences(number: 4),
+    image_name: 'community_manager.png',
+    user_id: 1
   },
   {
-    content: Faker::Lorem.sentences(numer: 4),
-    image_name: 'content_creator.png'
+    content: Faker::Lorem.sentences(number: 4),
+    image_name: 'content_creator.png',
+    user_id: 1
   },
   {
-    content: Faker::Lorem.sentences(numer: 4),
-    image_name: 'designer.jpg'
+    content: Faker::Lorem.sentences(number: 4),
+    image_name: 'designer.jpg',
+    user_id: 1
   }
 ]
 
-posts.each do |posts_attrs|
-  post = Post.new(post_attrs[:content])
-  post.image.attach(io: File.open("lib/assets/images/seeds/#{post_attrs[:image_name]}"), filename: posts_attrs[:image_name])
+binding.pry
+
+posts.each do |post_attrs|
+  post = Post.new()
+  post.assign_attributes post_attrs.except(:image_name)
+  post.image.attach(io: File.open("lib/assets/images/seeds/#{post_attrs[:image_name]}"), filename: post_attrs[:image_name])
   post.save!
 end
