@@ -7,5 +7,11 @@
       %ul
         - post.errors.full_messages.each do |message|
           %li= message
+  .field
+    = form.label :content
+    = form.text_field :content, maxlength: 255, size: 30
+  .field
+    = form.label :image
+    = form.file_field :image
   .actions
     = form.submit

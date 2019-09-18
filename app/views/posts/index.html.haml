@@ -7,6 +7,9 @@
   %tbody
     - @posts.each do |post|
       %tr
+        %td= post.content
+        - if post.image.attached?
+          %td= image_tag(post.image)
         %td= link_to 'Show', post
         %td= link_to 'Edit', edit_post_path(post)
         %td= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
