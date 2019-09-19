@@ -56,8 +56,6 @@ posts = [
   }
 ]
 
-binding.pry
-
 posts.each do |post_attrs|
   post = Post.new()
   post.assign_attributes post_attrs.except(:image_name)

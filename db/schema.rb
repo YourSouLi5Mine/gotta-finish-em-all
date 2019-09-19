@@ -36,8 +36,13 @@ ActiveRecord::Schema.define(version: 2019_09_18_035708) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-# Could not dump table "posts" because of following StandardError
-#   Unknown type 'users' for column 'references'
+  create_table "posts", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -66,5 +71,6 @@ ActiveRecord::Schema.define(version: 2019_09_18_035708) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "posts", "users"
   add_foreign_key "users", "roles"
 end
