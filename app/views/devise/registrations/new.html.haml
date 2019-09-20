@@ -10,10 +10,7 @@
           = f.password_field :password, autocomplete: 'new-password', placeholder: 'Contraseña', class: 'block border border-gray-400 w-full p-3 rounded mb-4'
         .field
           = f.password_field :password_confirmation, autocomplete: 'new-password', placeholder: 'Confirmar Contraseña', class: 'block border border-gray-400 w-full p-3 rounded mb-4'
-          = f.select(:role_id, options_from_collection_for_select(Role.all, :id, Role.titleized_names), {}, { class: 'block border border-gray-400 focus:border-gray-500 appearance-none w-full text-gray-900 py-3 px-4 pr-8 rounded leading-tight focus:outline-none' })
-
-
-
+          = f.collection_select(:role_id, Role.titleized_roles, :id, :name, {}, { class: 'block border border-gray-400 focus:border-gray-500 appearance-none w-full text-gray-900 py-3 px-4 pr-8 rounded leading-tight focus:outline-none mb-4' })
         = f.submit 'Crear cuenta', class: 'w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-600 focus:outline-none my-1'
     .text-gray-600.mt-6
       Ya cuentas con una cuenta?

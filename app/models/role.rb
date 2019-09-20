@@ -1,11 +1,5 @@
 class Role < ApplicationRecord
   has_many :users
 
-  def self.
-
-  private
-
-  def self.titleized_names
-    Role.all.pluck(:name).map(&:titleize)
-  end
+  scope :titleized_roles, -> { all.map { |role| OpenStruct.new({id: role.id, name: role.name.titleize}) } }
 end
