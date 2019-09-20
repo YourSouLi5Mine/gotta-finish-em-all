@@ -1,21 +1,19 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+.bg-gray-300.min-h-screen.flex.flex-col
+  .container.max-w-sm.mx-auto.flex-1.flex.flex-col.items-center.justify-center.px-2
+    .bg-white.px-6.py-8.rounded.shadow-md.text-black.w-full
+      %h1.mb-8.text-3xl.text-center.font-bold Registrarse
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .field
+          = f.email_field :email, autofocus: true, placeholder: 'Correo electrónico', autocomplete: 'email', class: 'block border border-gray-400 w-full p-3 rounded mb-4'
+        .field
+          = f.password_field :password, autocomplete: 'new-password', placeholder: 'Contraseña', class: 'block border border-gray-400 w-full p-3 rounded mb-4'
+        .field
+          = f.password_field :password_confirmation, autocomplete: 'new-password', placeholder: 'Confirmar contraseña', class: 'block border border-gray-400 w-full p-3 rounded mb-4'
+          = f.collection_select(:role_id, Role.titleized_roles, :id, :name, {}, { class: 'block border border-gray-400 focus:border-gray-500 appearance-none w-full text-gray-900 py-3 px-4 pr-8 rounded leading-tight focus:outline-none mb-4' })
+        = f.submit 'Crear cuenta', class: 'w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-600 focus:outline-none my-1'
+    .text-gray-600.mt-6
+      Ya cuentas con una cuenta?
+      = succeed "." do
+        %a.no-underline.border-b.border-blue-500.text-blue-500{:href => new_user_session_path}
+          Iniciar sesión
