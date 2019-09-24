@@ -13,4 +13,8 @@ Devise.setup do |config|
   config.unlock_in = 1.minutes
   config.last_attempt_warning = true
   config.sign_out_via = :delete
+  config.omniauth :facebook,
+    ENV["APP_ID"],
+    ENV["APP_SECRET"],
+    scope: 'email,user_likes'
 end
