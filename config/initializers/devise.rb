@@ -16,5 +16,5 @@ Devise.setup do |config|
   config.omniauth :facebook,
     ENV["APP_ID"],
     ENV["APP_SECRET"],
-    scope: 'email,user_likes'
+    scope: 'manage_pages,publish_pages'
 end

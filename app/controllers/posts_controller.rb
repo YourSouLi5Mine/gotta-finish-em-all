@@ -61,6 +61,17 @@ class PostsController < ApplicationController
     end
   end
 
+  def post_in_page
+    # Add params id to find the @post
+    # delete_object('/user.uid/permissions') -> delete permissions
+    # get_object('/user.uid/permissions') -> list permissions
+    # ActiveStorage::Blob.service.send(:path_for, Post.first.image_blob.key) -> get photo path
+    Facebook.post_in_page(current_user.token, @post)
+    binding.pry
+    @books = Facebook.get_object(current_user.token, '/me/books?fields=name,picture,written_by')
+    render 'books/index'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

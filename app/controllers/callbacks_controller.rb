@@ -1,10 +1,12 @@
 class CallbacksController < ApplicationController
   def facebook
-    user = User.create_from_omniauth(omniauth_params)
-    sign_in_and_redirect user, event: :authentication if user.persisted?
+    current_user.update_attributes(uid: omniauth_params[:uid],
+                                   token: omniauth_params[:credentials][:token])
+    redirect_to :root
   end
 
   def failure
+    flash[:error] = 'You could not login to facebook'
     redirect_to :root
   end
 
