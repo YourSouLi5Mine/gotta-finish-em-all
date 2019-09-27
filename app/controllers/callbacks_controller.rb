@@ -1,7 +1,13 @@
 class CallbacksController < ApplicationController
   def facebook
+    page_access_token = Facebook
+      .fbgraph(omniauth_params[:credentials][:token])
+      .get_connections('me', 'accounts')
+      .first['access_token']
+
     current_user.update_attributes(uid: omniauth_params[:uid],
-                                   token: omniauth_params[:credentials][:token])
+                                   token: omniauth_params[:credentials][:token],
+                                   page_token: page_access_token)
     redirect_to :root
   end
 

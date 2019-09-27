@@ -5,8 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
-  end
-
+  end 
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -62,24 +61,17 @@ class PostsController < ApplicationController
   end
 
   def post_in_page
-    # Add params id to find the @post
-    # delete_object('/user.uid/permissions') -> delete permissions
-    # get_object('/user.uid/permissions') -> list permissions
-    # ActiveStorage::Blob.service.send(:path_for, Post.first.image_blob.key) -> get photo path
-    Facebook.post_in_page(current_user.token, @post)
-    binding.pry
-    @books = Facebook.get_object(current_user.token, '/me/books?fields=name,picture,written_by')
-    render 'books/index'
+    Facebook.post_in_page(current_user.page_token, @post.content, image_path)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:content, :image, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:post).permit(:content, :image, :user_id)
+  end
 end
