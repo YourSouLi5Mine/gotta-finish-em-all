@@ -1,0 +1,13 @@
+.w-full.fixed
+  .bg-gray-200.shadow
+    .container.mx-auto.px-4
+      .flex.justify-between.py-4
+        .div
+          %a{:href => root_path}
+            = image_tag('logo', class: 'rounded border border-black w-8 hover:border-purple-600 p-1', alt: 'Logo')
+        .div.flex
+          %a.text-gray-800.text-lg.font-semibold.hover:text-purple-600.mr-4{:href => root_path} Aceptar
+          %a.text-gray-800.text-lg.font-semibold.hover:text-purple-600.mr-4{:href => root_path} Contenido
+          %a.text-gray-800.text-lg.font-semibold.hover:text-purple-600.mr-4{:href => root_path} Imagen
+        .div
+          = link_to('Cerrar sesión', destroy_user_session_path, method: :delete, class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-purple-600 hover:border-purple-600')
