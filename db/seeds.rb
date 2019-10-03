@@ -40,17 +40,17 @@ users.each { |user_attrs| User.create!(user_attrs) }
 
 posts = [
   {
-    content: Faker::Lorem.sentences(number: 4),
+    content: Faker::Lorem.paragraph(sentence_count: 8),
     image_name: 'community_manager.png',
     user_id: 1
   },
   {
-    content: Faker::Lorem.sentences(number: 4),
+    content: Faker::Lorem.paragraph(sentence_count: 6),
     image_name: 'content_creator.png',
     user_id: 1
   },
   {
-    content: Faker::Lorem.sentences(number: 4),
+    content: Faker::Lorem.paragraph(sentence_count: 10),
     image_name: 'designer.jpg',
     user_id: 1
   }
