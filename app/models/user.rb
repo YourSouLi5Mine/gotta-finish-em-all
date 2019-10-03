@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :validatable,
-    :lockable, :timeoutable, :trackable
+    :lockable, :timeoutable, :trackable, :omniauthable, :omniauth_providers => [:facebook]
 
   belongs_to :role
   has_many :posts

@@ -1,0 +1,10 @@
+= render "layouts/user-card"
+.row
+  .col-xs-6.col-xs-offset-3
+    - @books.each do |book|
+      .row.BookCard
+        .col-xs-2
+          = image_tag(book["picture"]["data"]["url"])
+        .col-xs-10
+          %span.BookCard-name= book["name"]
+          %span.BookCard-author= book["written_by"]

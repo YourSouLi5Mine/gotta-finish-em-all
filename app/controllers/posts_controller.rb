@@ -5,8 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
-  end
-
+  end 
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -61,14 +60,18 @@ class PostsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  def post_in_page
+    Facebook.post_in_page(current_user.page_token, @post.content, image_path)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:content, :image, :user_id)
-    end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:post).permit(:content, :image, :user_id)
+  end
 end
