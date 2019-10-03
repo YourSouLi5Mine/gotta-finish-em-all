@@ -4,7 +4,9 @@ module Abilities
 
     def initialize(user)
       if user.present?
-        can :read, Post
+        can [:read, :publish, :accept], Post
+        can :manage, CallbacksController
+        can :manage, Facebook
       end
     end
   end
