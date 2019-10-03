@@ -1,0 +1,6 @@
+%div.flex.text-justify.content-center.flex-wrap.ml-8{class: 'w-5/12'}= post.content
+- if post.image.attached?
+  %div{class: 'w-1/4'}= image_tag post.image, class: 'w-24 mx-auto'
+%div.flex.justify-center.content-center.flex-wrap{class: 'w-1/12'}= link_to 'Show', post
+%div.flex.justify-center.content-center.flex-wrap{class: 'w-1/12'}= link_to 'Edit', edit_post_path(post)
+%div.flex.justify-center.content-center.flex-wrap{class: 'w-1/12'}= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }

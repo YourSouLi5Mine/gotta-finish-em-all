@@ -10,6 +10,6 @@
 
   %body
     - if user_signed_in?
-      = render 'devise/menu/navbar'
-    #app
+      = render 'layouts/navbar'
+    #app.container-fluid
       = yield
