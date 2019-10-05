@@ -4,6 +4,7 @@ module Abilities
 
     def initialize(user)
       if user.present?
+        can [:show, :edit, :create], Post
       end
     end
   end
