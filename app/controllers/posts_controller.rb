@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
-  end 
+  end
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -60,8 +60,11 @@ class PostsController < ApplicationController
     end
   end
 
-  def post_in_page
-    Facebook.post_in_page(current_user.page_token, @post.content, image_path)
+  def accept
+    Facebook.publish(current_user.page_token, @post.content, image_path)
+  end
+
+  def reject
   end
 
   private

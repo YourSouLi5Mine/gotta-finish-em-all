@@ -1,0 +1,12 @@
+%div.flex.text-justify.content-center.flex-wrap.ml-8{class: 'w-5/12'}= post.content
+- if post.image.attached?
+  %div{class: 'w-1/4'}= image_tag post.image, class: 'w-24 mx-auto'
+- if can? :show, Post
+  %div.flex.justify-center.content-center.flex-wrap{class: 'w-1/12'}= link_to 'Show', post, class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-purple-600 hover:border-purple-600'
+- if can? :accept, Post
+  %div.flex.justify-center.content-center.flex-wrap{class: 'w-1/12'}= link_to 'Accept', accept_path(post), class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-purple-600 hover:border-purple-600'
+%div.flex.justify-center.content-center.flex-wrap{class: 'w-1/12'}
+- if can? :edit, Post
+  %div.flex.justify-center.content-center.flex-wrap{class: 'w-1/12'}= link_to 'Edit', edit_post_path(post), class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-purple-600 hover:border-purple-600'
+- if can? :reject, Post
+  %div.flex.justify-center.content-center.flex-wrap{class: 'w-1/12'}= link_to 'Reject', reject_path(post), class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-purple-600 hover:border-purple-600'
