@@ -1,6 +1,8 @@
 %h1.text-center.text-5xl.mt-24 Publicaciones
+.w-full.text-right
+  = link_to 'New Post', new_post_path, class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-purple-600 hover:border-purple-600'
 .my-8.flex.text-center{class:'w-full'}
-  %div.ml-8.text-2xl.text-2xl{class: 'w-5/12'} Contenido
+  %div.ml-8.text-2xl{class: 'w-5/12'} Contenido
   %div.text-2xl{class: 'w-3/12'} Imagen
   %div.text-2xl{class: 'w-1/4'} Opciones
 - @posts.each_with_index do |post, index|
@@ -11,4 +13,3 @@
     .flex.content-center.flex-wrap.h-40.bg-gray-400{class:'w-full'}
       = render post
 %br/
-= link_to 'New Post', new_post_path, class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-purple-600 hover:border-purple-600'
