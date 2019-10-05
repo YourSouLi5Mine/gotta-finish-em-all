@@ -8,8 +8,10 @@
             = link_to 'Aceptar', accept_path, class: 'text-gray-700  text-lg font-semibold hover:text-purple-600 mx-8'
 
           - if can? :create, Post
-            = link_to 'Contenido', new_post_path, class: 'text-gray-700  text-lg font-semibold hover:text-purple-600 mx-8'
-            = link_to 'Imagen', new_post_path, class: 'text-gray-700  text-lg font-semibold hover:text-purple-600 mx-8'
+            - if current_user.is_content_creator?
+              = link_to 'Contenido', new_post_path, class: 'text-gray-700  text-lg font-semibold hover:text-purple-600 mx-8'
+            - if current_user.is_designer?
+              = link_to 'Imagen', new_post_path, class: 'text-gray-700  text-lg font-semibold hover:text-purple-600 mx-8'
         .div
           - if can? :manage, Facebook
             - unless current_user.page_token
