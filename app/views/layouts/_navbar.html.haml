@@ -2,14 +2,15 @@
   .bg-gray-200.shadow
     .container.mx-auto.px-4
       .flex.justify-between.py-4
-        .div
+        .div.flex
           %a{:href => root_path}
             = image_tag('logo', class: 'rounded border border-black w-8 hover:border-purple-600 p-1', alt: 'Logo')
-        .div.flex
           - if can? :accept, Post
-            %a.text-gray-800.text-lg.font-semibold.hover:text-purple-600.mr-4{:href => root_path} Aceptar
-          %a.text-gray-800.text-lg.font-semibold.hover:text-purple-600.mr-4{:href => root_path} Contenido
-          %a.text-gray-800.text-lg.font-semibold.hover:text-purple-600.mr-4{:href => root_path} Imagen
+            = link_to 'Aceptar', root_path, class: 'text-gray-700  text-lg font-semibold hover:text-purple-600 mx-8'
+
+          - if can? :create, Post
+            = link_to 'Contenido', root_path, class: 'text-gray-700  text-lg font-semibold hover:text-purple-600 mx-8'
+            = link_to 'Imagen', root_path, class: 'text-gray-700  text-lg font-semibold hover:text-purple-600 mx-8'
         .div
           - if can? :manage, Facebook
             - unless current_user.page_token
