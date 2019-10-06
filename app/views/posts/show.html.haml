@@ -1,3 +1,6 @@
+%h1.text-center.text-5xl.mt-24 Nueva Publicación
+= render 'form', post: @post
+= link_to 'Back', posts_path
 %p#notice= notice
 = link_to 'Edit', edit_post_path(@post)
 |

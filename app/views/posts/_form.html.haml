@@ -7,11 +7,19 @@
       %ul
         - post.errors.full_messages.each do |message|
           %li= message
-  .field
-    = form.label :content
-    = form.text_field :content, maxlength: 255, size: 30
-  .field
-    = form.label :image
-    = form.file_field :image
-  .actions
-    = form.submit
+
+  .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4.flex.flex-col.my-2
+    - if current_user.is_content_creator?
+      .-mx-3.md:flex.mb-6
+        .md:w-full.px-3
+          = form.label :content, class: 'block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2'
+          = form.text_area :content, class: 'appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3', placeholder: 'Escribe aquí el contenido de la nota', rows: 5
+          %p.text-grey-dark.text-xs.italic Favor de llenar el contenido de la publicación
+
+    - if current_user.is_designer?
+      .flex.justify-center.mb-6
+        = form.label :image, (fa_icon 'cloud-upload', text: 'Seleccione una Imagen', class: 'fa-2x mb-1'), :class => 'w-64 flex flex-col items-center text-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-green-300'
+        = form.file_field :image, class: 'hidden'
+    .flex.justify-center
+      - binding.pry
+      = form.submit('Crear Publicación', class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-green-500 hover:border-green-500 w-1/4')

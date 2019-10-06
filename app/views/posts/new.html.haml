@@ -1,3 +1,4 @@
-%h1 New Post
+%h1.text-center.text-5xl.mt-24 Nueva Publicación
 = render 'form', post: @post
-= link_to 'Back', posts_path
+.mb-12
+= link_to 'Back', posts_path, class: 'text-gray-800 text-lg font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-orange-500 hover:border-orange-500 mt-32'
