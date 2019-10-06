@@ -1,12 +1,5 @@
 = form_with(model: post, local: true) do |form|
-  - if post.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(post.errors.count, "error")
-        prohibited this post from being saved:
-      %ul
-        - post.errors.full_messages.each do |message|
-          %li= message
+  = render partial: "devise/shared/error_messages", locals: { resource: post }
 
   .bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4.flex.flex-col.my-2
     - if current_user.is_content_creator?

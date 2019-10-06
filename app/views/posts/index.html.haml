@@ -1,4 +1,5 @@
 %h1.text-center.text-5xl.mt-24 Publicaciones
+= render partial: "devise/shared/error_messages", locals: { resource: current_user }
 .text-gray-900.bg-gray-200.my-8.rounded
   .px-3.py-4.flex.justify-center
     %table.w-full.text-md.bg-white.shadow-md.rounded.mb-4
