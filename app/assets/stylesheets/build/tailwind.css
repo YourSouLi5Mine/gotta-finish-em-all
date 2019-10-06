@@ -11369,6 +11369,10 @@ video {
   background-color: #4267B2;
 }
 
+.facebook-color:hover {
+  background-color: #3B5C9F;
+}
+
 .container-fluid {
   width: 100%;
   padding-right: 35px;
