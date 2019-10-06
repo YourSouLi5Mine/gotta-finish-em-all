@@ -2,17 +2,19 @@
   .bg-gray-200.shadow
     .container.mx-auto.px-4
       .flex.justify-between.py-4
-        .div
-          %a{:href => root_path}
-            = image_tag('logo', class: 'rounded border border-black w-8 hover:border-purple-600 p-1', alt: 'Logo')
         .div.flex
+          = link_to image_tag('logo', class: 'rounded border border-black w-8 hover:border-purple-600 p-1', alt: 'Logo'), root_path
           - if can? :accept, Post
-            %a.text-gray-800.text-lg.font-semibold.hover:text-purple-600.mr-4{:href => root_path} Aceptar
-          %a.text-gray-800.text-lg.font-semibold.hover:text-purple-600.mr-4{:href => root_path} Contenido
-          %a.text-gray-800.text-lg.font-semibold.hover:text-purple-600.mr-4{:href => root_path} Imagen
+            = link_to 'Aceptar', accept_path, class: 'text-gray-700  text-lg font-semibold hover:text-purple-600 mx-8'
+
+          - if can? :create, Post
+            - if current_user.is_content_creator?
+              = link_to 'Contenido', new_post_path, class: 'text-gray-700  text-lg font-semibold hover:text-purple-600 mx-8'
+            - if current_user.is_designer?
+              = link_to 'Imagen', new_post_path, class: 'text-gray-700  text-lg font-semibold hover:text-purple-600 mx-8'
         .div
           - if can? :manage, Facebook
             - unless current_user.page_token
               = link_to user_facebook_omniauth_authorize_url(), class: 'text-white facebook-color rounded p-2 mr-4' do
                 = fa_icon 'facebook-square', text: 'Connect to Facebook'
-          = link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-purple-600 hover:border-purple-600'
+          = link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-red-500 hover:border-red-500'
