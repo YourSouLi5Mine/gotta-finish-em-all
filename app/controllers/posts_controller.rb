@@ -41,7 +41,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if @post.update(post_params)
+      if update_service
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -77,5 +77,28 @@ class PostsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
     params.require(:post).permit(:content, :image, :user_id)
+  end
+
+  def update_service
+    Post.transaction do
+      @post.update!(post_params)
+
+      post_user_service(post_user(2)) if current_user.is_content_creator?
+      post_user_service(post_user(3)) if current_user.is_designer?
+    end
+    true
+  end
+
+  def post_user(id)
+    old_user_id = @post.users.where(role_id: id).first&.id
+    @post.post_users.where(user_id: old_user_id)
+  end
+
+  def post_user_service(record)
+    if record.present?
+      record.first.update_attributes(user_id: current_user.id)
+    else
+      @post.users.push(User.find(current_user.id))
+    end
   end
 end
