@@ -42,23 +42,28 @@ posts = [
   {
     content: Faker::Lorem.paragraph(sentence_count: 8),
     image_name: 'community_manager.png',
-    user_id: 1
+    content_creator: 2,
+    designer: 3
   },
   {
     content: Faker::Lorem.paragraph(sentence_count: 6),
     image_name: 'content_creator.png',
-    user_id: 1
+    content_creator: 2,
+    designer: 3
   },
   {
     content: Faker::Lorem.paragraph(sentence_count: 10),
     image_name: 'designer.jpg',
-    user_id: 1
+    content_creator: 2,
+    designer: 3
   }
 ]
 
 posts.each do |post_attrs|
   post = Post.new()
-  post.assign_attributes post_attrs.except(:image_name)
+  post.content = post_attrs[:content]
+  post.users.push(User.find(post_attrs[:content_creator]))
+  post.users.push(User.find(post_attrs[:designer]))
   post.image.attach(io: File.open("lib/assets/images/seeds/#{post_attrs[:image_name]}"), filename: post_attrs[:image_name])
   post.save!
 end
