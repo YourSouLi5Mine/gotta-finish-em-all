@@ -36,7 +36,23 @@ users = [
   }
 ]
 
+extra_users = [
+  {
+    email: 'content_creator_copy@gmail.com',
+    password: ENV['PASSWORD'],
+    password_confirmation: ENV['PASSWORD'],
+    role_id: 2
+  },
+  {
+    email: 'designer_copy@gmail.com',
+    password: ENV['PASSWORD'],
+    password_confirmation: ENV['PASSWORD'],
+    role_id: 3
+  }
+]
+
 users.each { |user_attrs| User.create!(user_attrs) }
+extra_users.each { |user_attrs| User.create!(user_attrs) }
 
 posts = [
   {

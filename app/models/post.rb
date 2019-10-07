@@ -1,7 +1,8 @@
 class Post < ApplicationRecord
   has_one_attached :image
 
-  has_and_belongs_to_many :users
+  has_many :post_users
+  has_many :users, through: :post_users
 
   validate :content_or_image
 

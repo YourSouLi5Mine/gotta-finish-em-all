@@ -1,5 +1,6 @@
+%h1.text-center.text-5xl.mt-24.mb-4 Mostrar publicación
 = render partial: "devise/shared/error_messages", locals: { resource: @post }
-.lg:w-full.lg:flex.lg:justify-center.mt-24.mx-auto.mb-8{class: 'sm:w-1/2'}
+.lg:w-full.lg:flex.lg:justify-center.mt-4.mx-auto.mb-8{class: 'sm:w-1/2'}
   .h-48.lg:h-auto.lg:w-48.flex-none.bg-cover.bg-center.rounded-t.lg:rounded-t-none.lg:rounded-l.border.border-gray-300.text-center.overflow-hidden{:style => "background-image: url(#{rails_blob_url(@post.image)})", :title => "Woman holding a mug"}
   .border.border-gray-300.bg-white.round.lg:rounded-b-none.lg:rounded-r.p-4.flex.flex-col.justify-between.leading-normal
     .mb-8
@@ -10,10 +11,10 @@
         - content_creator = @post.users.where(role_id: 2).first
         - designer = @post.users.where(role_id: 3).first
         - if content_creator.present?
-          %p.text-black.leading-none.italic.font-semibold= "Content creator: #{@post.users.where(role_id: 2).first.email}"
+          %p.text-black.leading-none.italic.font-semibold= "Content creator: #{content_creator.email}"
         - if designer.present?
-          %p.text-black.leading-none.mt-2.italic.font-semibold= "Designer: #{@post.users.where(role_id: 3).first.email}"
+          %p.text-black.leading-none.mt-2.italic.font-semibold= "Designer: #{designer.email}"
         %p.text-gray-500.font-semibold.mt-4= "Created at: #{@post.created_at.strftime('%d-%m-%Y')}"
         %p.text-gray-500.font-semibold= "Updated at: #{@post.updated_at.strftime('%d-%m-%Y')}"
-= link_to 'Back', root_path, class: 'text-gray-800 text-lg font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-orange-500 hover:border-orange-500 mt-32'
-
+= link_to 'Back', root_path, class: 'text-gray-800 text-lg font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-orange-500 hover:border-orange-500'
+= link_to 'Editar', edit_post_path(@post), class: 'ml-4 text-gray-800 text-lg font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-orange-300 hover:border-orange-300'

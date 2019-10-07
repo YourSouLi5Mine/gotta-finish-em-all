@@ -3,7 +3,8 @@ class User < ApplicationRecord
     :lockable, :timeoutable, :trackable, :omniauthable, :omniauth_providers => [:facebook]
 
   belongs_to :role
-  has_and_belongs_to_many :posts
+  has_many :post_users
+  has_many :posts, through: :post_users
 
   def is_community_manager?
     self.role.id == 1
