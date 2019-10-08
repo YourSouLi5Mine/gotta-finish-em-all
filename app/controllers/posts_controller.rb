@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   end
 
   def accept
-    Facebook.publish(current_user.page_token, @post.content, image_path)
+    Facebook.publish(current_user.page_token, @post.content, @post.image.key)
   end
 
   def reject
