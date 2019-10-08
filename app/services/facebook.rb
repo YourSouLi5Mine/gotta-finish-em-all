@@ -5,7 +5,11 @@ class Facebook
     end
 
     def publish(page_token, content, image_key)
-      fbgraph(page_token).put_picture(s3_url(image_key), {message: content})
+      if image_key
+        fbgraph(page_token).put_picture(s3_url(image_key), {message: content})
+      else
+        fbgraph(page_token).put_connections('me', 'feed', message: content)
+      end
     end
 
     private

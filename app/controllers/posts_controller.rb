@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   end
 
   def accept
-    Facebook.publish(current_user.page_token, @post.content, @post.image.key)
+    Facebook.publish(current_user.page_token, @post.content, image_key)
   end
 
   def reject
@@ -100,5 +100,9 @@ class PostsController < ApplicationController
     else
       @post.users.push(User.find(current_user.id))
     end
+  end
+
+  def image_key
+    @post.image.key if @post.image.attached?
   end
 end
