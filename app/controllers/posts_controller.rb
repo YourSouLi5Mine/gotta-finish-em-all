@@ -63,6 +63,8 @@ class PostsController < ApplicationController
 
   def accept
     Facebook.publish(current_user.page_token, @post.content, image_key)
+    flash[:success] = "Post with id: #{@post.id} was successfully created in FB!"
+    redirect_to root_url
   end
 
   def reject
