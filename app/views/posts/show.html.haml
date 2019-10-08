@@ -16,5 +16,5 @@
           %p.text-black.leading-none.mt-2.italic.font-semibold= "Designer: #{designer.email}"
         %p.text-gray-500.font-semibold.mt-4= "Created at: #{@post.created_at.strftime('%d-%m-%Y')}"
         %p.text-gray-500.font-semibold= "Updated at: #{@post.updated_at.strftime('%d-%m-%Y')}"
-= link_to 'Back', root_path, class: 'text-gray-800 text-lg font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-orange-500 hover:border-orange-500'
+= link_to 'Regresar', root_path, class: 'text-gray-800 text-lg font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-orange-500 hover:border-orange-500'
 = link_to 'Editar', edit_post_path(@post), class: 'ml-4 text-gray-800 text-lg font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-orange-300 hover:border-orange-300'
