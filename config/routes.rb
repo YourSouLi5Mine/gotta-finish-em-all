@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: 'posts#index'
 
   resources :posts, except: [:index]
-  get 'accept' => 'posts#accept'
-  get 'reject' => 'posts#reject'
+  get '/accept/:id' => 'posts#accept', as: 'accept'
+  get '/reject/:id' => 'posts#reject', as: 'reject'
   get 'books' => 'posts#books'
 end

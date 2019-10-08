@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :accept, :reject]
 
   # GET /posts
   # GET /posts.json
@@ -62,7 +62,9 @@ class PostsController < ApplicationController
   end
 
   def accept
-    Facebook.publish(current_user.page_token, @post.content, image_path)
+    Facebook.publish(current_user.page_token, @post.content, image_key)
+    flash[:success] = "Post with id: #{@post.id} was successfully created in FB!"
+    redirect_to root_url
   end
 
   def reject
@@ -100,5 +102,9 @@ class PostsController < ApplicationController
     else
       @post.users.push(User.find(current_user.id))
     end
+  end
+
+  def image_key
+    @post.image.key if @post.image.attached?
   end
 end

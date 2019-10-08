@@ -4,11 +4,18 @@
       = render partial: 'devise/shared/desktop_error', locals: { message: message, color: 'red' }
 
 - flash.each do |name, msg|
-  - color = name == 'alert' ? 'red' : 'orange'
+  - if name == 'success'
+    - color = 'green'
+    - title = 'Éxito'
+  - elsif name == 'alert'
+    - color = 'red'
+    - title = 'Error'
+  - else
+    - color = 'orange'
+    - title = 'Aviso'
   #error_explanation
     - if msg.class == Array
       - msg.each do |message|
-        = render partial: 'devise/shared/desktop_error', locals: { message: message, color: color }
+        = render partial: 'devise/shared/desktop_error', locals: { message: message, color: color, title: title }
     - else
-      = render partial: 'devise/shared/desktop_error', locals: { message: msg, color: color }
-
+      = render partial: 'devise/shared/desktop_error', locals: { message: msg, color: color, title: title }

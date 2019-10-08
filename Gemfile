@@ -19,6 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'cancancan'
 gem 'koala'
 gem 'omniauth-facebook'
+gem 'aws-sdk-s3'
 
 group :development, :test do
   gem 'faker'

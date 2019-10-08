@@ -7,6 +7,7 @@
         %tr.border-b
           %th.text-center.text-xl.p-3.px-5 Contenido
           %th.text-left.text-xl.p-3.px-5 Imagen
+          %th.text-center.text-xl.p-3.px-5 Id
           %th.text-xl.p-3.px-5.text-right Opciones
         - @posts.each_with_index do |post, index|
           - color = 'bg-gray-100' if index.modulo(2) === 0
