@@ -20,6 +20,7 @@ gem 'cancancan'
 gem 'koala'
 gem 'omniauth-facebook'
 gem 'aws-sdk-s3'
+gem 'sweetalert-rails'
 
 group :development, :test do
   gem 'faker'
