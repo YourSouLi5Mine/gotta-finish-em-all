@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :accept, :reject]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :accept]
 
   # GET /posts
   # GET /posts.json
@@ -67,9 +67,6 @@ class PostsController < ApplicationController
     redirect_to root_url
   end
 
-  def reject
-  end
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_post
@@ -85,14 +82,13 @@ class PostsController < ApplicationController
     Post.transaction do
       @post.update!(post_params)
 
-      post_user_service(post_user(2)) if current_user.is_content_creator?
-      post_user_service(post_user(3)) if current_user.is_designer?
+      post_user_service(@post.content_creator_id) if current_user.is_content_creator?
+      post_user_service(@post.designer_id) if current_user.is_designer?
     end
     true
   end
 
-  def post_user(id)
-    old_user_id = @post.users.where(role_id: id).first&.id
+  def post_user(old_user_id)
     @post.post_users.where(user_id: old_user_id)
   end
 
