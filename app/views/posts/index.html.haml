@@ -11,5 +11,5 @@
           %th.text-xl.p-3.px-5.text-right Opciones
         - @posts.each_with_index do |post, index|
           - color = 'bg-gray-100' if index.modulo(2) === 0
-          %tr.border-b.hover:bg-orange-100{class: "#{color}", id: "#{post.id}"}
+          %tr.border-b.hover:bg-orange-100{class: "#{color}", id: "post_#{post.id}"}
             = render post
