@@ -17,4 +17,6 @@
             - unless current_user.page_token
               = link_to user_facebook_omniauth_authorize_url(), class: 'text-white facebook-color rounded p-2 mr-4' do
                 = fa_icon 'facebook-square', text: 'Connect to Facebook'
+          - if current_user.is_community_manager?
+            = link_to 'Export', export_path(format: :pdf), class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-red-500 hover:border-red-500 mr-2'
           = link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-red-500 hover:border-red-500'
