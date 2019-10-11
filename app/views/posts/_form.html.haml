@@ -13,4 +13,4 @@
         = form.label :image, (fa_icon 'cloud-upload', text: 'Seleccione una Imagen', class: 'fa-2x mb-1'), :class => 'w-64 flex flex-col items-center text-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-green-300'
         = form.file_field :image, accept: 'image/png, image/gif, image/jpeg', hidden: true, required: true
     .flex.justify-center
-      = form.submit("#{button_label} Publicación", class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-green-500 hover:border-green-500 w-1/4')
+      = form.submit("#{button_label} Publicación", id: 'create-post', class: 'text-gray-800 text-sm font-semibold border border-gray-500 px-4 py-2 rounded-lg bg-white hover:text-white hover:bg-green-500 hover:border-green-500 w-1/4')

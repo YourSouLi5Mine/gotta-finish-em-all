@@ -23,4 +23,15 @@ $(document).ready(function () {
 
     return false;
   });
+
+  $('#create-post').click(function(e) {
+    const self = this;
+
+    App.reject.rejection({
+      'post_id': self.attributes['post_id'].value,
+      'receiver_id': self.attributes['content_creator_id'].value
+    });
+
+    return false;
+  });
 });
