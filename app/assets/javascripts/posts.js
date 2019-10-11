@@ -3,9 +3,9 @@ $(document).ready(function () {
     const self = this;
 
     swal({
-      title: 'Reject post by:',
+      title: 'Rechazar publicación por',
       showCancelButton: true,
-      confirmButtonText: 'Content',
+      confirmButtonText: 'Contenido',
       cancelButtonText: 'Media'
     })
       .then(() => {
