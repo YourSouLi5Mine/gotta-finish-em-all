@@ -10,6 +10,6 @@
         - @posts.each_with_index do |post, index|
           - color = 'bg-gray-100' if index.modulo(2) === 0
           %tr.border-b{class: "#{color}", id: "post_#{post.id}"}
-            %td.p-3.px-5.text-justify{class: 'w-2/3'}= post.content
+            %td.p-3.px-5.text-justify{class: 'w-4/5'}= post.content
             %td.p-3= image_tag post.image.service_url, class: 'w-20' if post.image.attached?
             %td.p-3.px-5.text-center= post.id
