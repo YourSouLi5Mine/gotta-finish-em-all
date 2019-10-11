@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :accept]
-  before_action :set_posts, only: [:index, :export]
 
   # GET /posts
   # GET /posts.json
   def index
+    @posts = Post.all
   end
   # GET /posts/1
   # GET /posts/1.json
@@ -64,18 +64,33 @@ class PostsController < ApplicationController
   def accept
     Facebook.publish(current_user.page_token, @post.content, image_key)
     flash[:success] = "Post with id: #{@post.id} was successfully created in FB!"
+    @post.update_attributes(published: true)
     redirect_to root_url
   end
 
   def export
-    respond_to do |format|
-      format.pdf do
-        render pdf: "Facebook Publications #{Time.now.strftime('%d-%m-%Y')}",
-          template: 'pdfs/export.html.haml',
-          layout: 'pdf',
-          page_size: 'A4',
-          lowquality: true,
-          orientation: 'Landscape'
+    @posts = Post.where(published: true)
+    if @posts.present?
+      respond_to do |format|
+        format.pdf do
+          render pdf: "Facebook Publications #{Time.now.strftime('%d-%m-%Y')}",
+            template: 'pdfs/export.html.haml',
+            layout: 'pdf',
+            page_size: 'A4',
+            lowquality: true,
+            orientation: 'Landscape'
+        end
+      end
+    else
+      respond_to do |format|
+        format.pdf do
+          render pdf: "Facebook Publications #{Time.now.strftime('%d-%m-%Y')}",
+            template: 'pdfs/no_posts.html.haml',
+            layout: 'pdf',
+            page_size: 'A4',
+            lowquality: true,
+            orientation: 'Landscape'
+        end
       end
     end
   end
@@ -84,10 +99,6 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def set_posts
-    @posts = Post.all
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
