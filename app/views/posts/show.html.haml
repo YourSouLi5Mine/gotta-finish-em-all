@@ -1,7 +1,8 @@
 %h1.text-center.text-5xl.mt-24.mb-4 Mostrar publicación
 = render partial: "devise/shared/error_messages", locals: { resource: @post }
 .lg:w-full.lg:flex.lg:justify-center.mt-4.mx-auto.mb-8{class: 'sm:w-1/2'}
-  .h-48.lg:h-auto.lg:w-48.flex-none.bg-cover.bg-center.rounded-t.lg:rounded-t-none.lg:rounded-l.border.border-gray-300.text-center.overflow-hidden{:style => "background-image: url(#{rails_blob_url(@post.image)})", :title => "Woman holding a mug"}
+  - if @post.image.attached?
+    .h-48.lg:h-auto.lg:w-48.flex-none.bg-cover.bg-center.rounded-t.lg:rounded-t-none.lg:rounded-l.border.border-gray-300.text-center.overflow-hidden{:style => "background-image: url(#{rails_blob_url(@post.image)})"}
   .border.border-gray-300.bg-white.round.lg:rounded-b-none.lg:rounded-r.p-4.flex.flex-col.justify-between.leading-normal
     .mb-8
       .text-blacky.font-bold.text-xl.mb-2= "Post número: #{@post.id}"
