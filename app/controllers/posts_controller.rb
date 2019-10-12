@@ -120,9 +120,9 @@ class PostsController < ApplicationController
     @post.post_users.where(user_id: old_user_id)
   end
 
-  def post_user_service(record)
-    if record.present?
-      record.first.update_attributes(user_id: current_user.id)
+  def post_user_service(id)
+    if id.present?
+      @post.post_users.where(user_id: id).first.update_attributes(user_id: current_user.id)
     else
       @post.users.push(User.find(current_user.id))
     end
